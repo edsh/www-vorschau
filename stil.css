@@ -1,0 +1,523 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Jost:wght@400;500;600&display=swap");
+
+/* ==========================================================================
+   Entwurf für den neuen Auftritt des LSV Backnang-Heiningen
+   Farben und Schriften stammen aus der Flugplatzfest-Seite des Vereins,
+   das Markenblau #198DCD aus dem Logo-SVG.
+   ========================================================================== */
+
+:root {
+  --marke:      #198DCD;   /* Logo-Blau, nur dekorativ (3,66:1 auf Weiß) */
+  --interaktiv: #157AB0;   /* abgedunkelt für Links und Knöpfe (4,73:1)  */
+  --himmel:     #42b6e7;
+  --hell:       #8edfff;
+  --navy:       #082949;
+  --nacht:      #051426;
+  --rot:        #a31c21;
+  --stroh:      #b07d2a;
+  --stroh-text: #96691f;   /* 4,84:1 auf Weiß */
+  --sand:       #f6f1e6;
+  --dunst:      #f4f7fa;
+  --text:       #0d2135;
+  --text-weich: #4a6076;
+  --grau:       #5d7489;
+  --linie:      rgba(6, 42, 76, .14);
+  --max:        1240px;
+  --rand:       100px;     /* Seitenrand, per Breakpoint kleiner */
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--text);
+  font-family: Jost, "Segoe UI", Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
+}
+
+a { color: var(--interaktiv); text-decoration: none; }
+a:hover { color: var(--navy); }
+img { max-width: 100%; }
+
+h1, h2, h3, h4 {
+  font-family: Oswald, "Arial Narrow", "Aptos Narrow", Arial, sans-serif;
+  margin: 0;
+  color: var(--nacht);
+  letter-spacing: -.03em;
+  line-height: 1.1;
+}
+
+.bahn { max-width: var(--max); margin: 0 auto; }
+.seitenrand { padding-left: var(--rand); padding-right: var(--rand); }
+
+.kleinzeile {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--grau);
+}
+
+/* Sprungmarke für Tastatur- und Screenreader-Nutzung */
+.skip {
+  position: absolute; left: -9999px;
+  background: var(--navy); color: #fff; padding: 12px 20px; z-index: 100;
+}
+.skip:focus { left: 12px; top: 12px; color: #fff; }
+
+/* ============================ Kopfzeile ================================= */
+
+.kopf {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 40px; padding: 18px var(--rand);
+  background: #fff; border-bottom: 1px solid rgba(6, 42, 76, .12);
+}
+.marke { display: flex; align-items: center; gap: 14px; }
+.marke img { width: 88px; height: 46px; object-fit: contain; flex-shrink: 0; }
+.marke-text { display: flex; flex-direction: column; gap: 1px; }
+.marke-name { font-size: 19px; font-weight: 400; color: var(--navy); line-height: 1.15; }
+.marke-zusatz {
+  font-size: 11px; font-weight: 500; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--grau);
+}
+
+.navi { display: flex; align-items: center; gap: 34px; }
+.navi a { font-size: 16px; font-weight: 500; color: var(--text); }
+.navi a.aktiv {
+  font-weight: 600; color: var(--interaktiv);
+  border-bottom: 2px solid var(--interaktiv); padding-bottom: 3px;
+}
+
+.knopf {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 0 20px; border-radius: 2px;
+  background: var(--interaktiv); color: #fff;
+  font-size: 15px; font-weight: 600; letter-spacing: .02em;
+}
+.knopf:hover { background: var(--navy); color: #fff; }
+.knopf--rot { background: var(--rot); }
+.knopf--rot:hover { background: #7d1519; }
+.knopf--linie { background: none; border: 1px solid rgba(255,255,255,.34); color: #fff; }
+.knopf--linie:hover { background: rgba(255,255,255,.1); color: #fff; }
+.knopf--breit { width: 100%; min-height: 52px; font-size: 16px; }
+
+/* Auf großen Schirmen trägt die Navigation den PPR-Knopf selbst */
+.kopf-rechts { display: none; }
+
+/* Menüschalter: erst ab Tablet sichtbar */
+.menue-schalter {
+  display: none; align-items: center; justify-content: center;
+  width: 44px; height: 44px; padding: 0;
+  background: none; border: 0; cursor: pointer; color: var(--navy);
+}
+
+/* ============================== Hero ==================================== */
+
+.hero { position: relative; height: 600px; overflow: hidden; background: var(--navy); }
+.hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-schleier {
+  position: absolute; inset: 0;
+  background: linear-gradient(105deg, rgba(5,20,38,.86) 0%, rgba(5,20,38,.62) 42%, rgba(5,20,38,.10) 78%);
+}
+.hero-inhalt {
+  position: relative; display: flex; flex-direction: column; justify-content: center;
+  gap: 26px; height: 100%; max-width: var(--max); margin: 0 auto;
+  padding: 0 var(--rand);
+}
+.hero-kleinzeile {
+  font-size: 13px; font-weight: 600; letter-spacing: .26em;
+  text-transform: uppercase; color: var(--hell);
+}
+.hero h1 {
+  max-width: 900px; font-size: 82px; font-weight: 700;
+  line-height: .92; letter-spacing: -.04em; color: #fff;
+}
+.hero p { margin: 0; max-width: 560px; font-size: 20px; line-height: 1.5; color: rgba(255,255,255,.86); }
+
+/* ========================== Platzdaten =================================== */
+
+.platzdaten { background: var(--navy); padding: 0 var(--rand); }
+.platzdaten-gitter {
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
+  max-width: var(--max); margin: 0 auto;
+}
+.platzdaten-feld {
+  display: flex; flex-direction: column; gap: 6px; padding: 22px 28px;
+  border-left: 1px solid rgba(255,255,255,.16);
+}
+.platzdaten-feld:first-child { border-left: 0; padding-left: 0; }
+.platzdaten-feld:last-child { padding-right: 0; }
+.platzdaten-feld .kleinzeile { color: #6f93b3; }
+.platzdaten-wert {
+  font-family: Oswald, "Arial Narrow", Arial, sans-serif;
+  font-size: 26px; font-weight: 500; color: #fff; letter-spacing: .02em;
+}
+.platzdaten-feld--warnung .kleinzeile { color: #ffb4b6; }
+.platzdaten-feld--warnung .platzdaten-wert { color: #ff9ea1; }
+
+/* =========================== Drei Türen ================================= */
+
+.tueren { padding: 92px var(--rand) 100px; }
+.tueren-kopf { display: flex; flex-direction: column; gap: 10px; margin-bottom: 44px; }
+.tueren-kopf .vorzeile {
+  font-size: 13px; font-weight: 600; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--stroh-text);
+}
+.tueren-kopf h2 { font-size: 46px; font-weight: 600; line-height: 1; }
+.tueren-gitter { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+
+.tuer {
+  display: flex; flex-direction: column;
+  background: #fff; border: 1px solid var(--linie); border-top: 4px solid var(--marke);
+}
+.tuer--ausbildung { border-top-color: var(--himmel); }
+.tuer--gaeste { border-top-color: var(--stroh); }
+.tuer > img { width: 100%; height: 210px; object-fit: cover; }
+.tuer-text { display: flex; flex-direction: column; gap: 18px; padding: 30px 30px 20px; flex-grow: 1; }
+.tuer-text .kleinzeile { color: var(--interaktiv); }
+.tuer--ausbildung .tuer-text .kleinzeile { color: #10708F; }
+.tuer--gaeste .tuer-text .kleinzeile { color: var(--stroh-text); }
+.tuer h3 { font-size: 30px; font-weight: 500; letter-spacing: -.02em; }
+.tuer p { margin: 0; font-size: 16px; color: var(--text-weich); }
+.tuer-liste { display: flex; flex-direction: column; padding: 0 30px 16px; }
+.tuer-liste a {
+  display: flex; align-items: center; gap: 10px; min-height: 44px;
+  font-size: 16px; font-weight: 500; color: var(--text);
+  border-top: 1px solid rgba(6,42,76,.10);
+}
+.tuer-liste a:hover { color: var(--interaktiv); }
+.tuer-liste svg { flex-shrink: 0; }
+
+/* ============================ Am Platz ================================== */
+
+.amplatz { background: var(--sand); padding: 76px var(--rand) 84px; border-top: 1px solid rgba(6,42,76,.10); }
+.amplatz-kopf { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; margin-bottom: 34px; }
+.amplatz-kopf h2 { font-size: 40px; font-weight: 600; line-height: 1; }
+.amplatz-kopf .kleinzeile { font-size: 13px; color: var(--stroh-text); }
+
+.termin { display: flex; background: #fff; border: 1px solid var(--linie); margin-bottom: 24px; }
+.termin-datum {
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  gap: 2px; width: 190px; flex-shrink: 0; padding: 34px 20px;
+  background: var(--rot); color: #fff;
+  font-family: Oswald, "Arial Narrow", Arial, sans-serif;
+}
+.termin-tag { font-size: 58px; font-weight: 700; line-height: .9; letter-spacing: -.03em; }
+.termin-monat { font-size: 22px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
+.termin-jahr { font-family: Jost, sans-serif; font-size: 13px; font-weight: 500; letter-spacing: .16em; color: rgba(255,255,255,.78); }
+.termin-text {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 40px; flex-grow: 1; padding: 34px 38px;
+}
+.termin-text > div { display: flex; flex-direction: column; gap: 10px; max-width: 620px; }
+.termin-text .kleinzeile { color: var(--rot); }
+.termin-text h3 { font-size: 34px; font-weight: 500; letter-spacing: -.02em; line-height: 1.05; }
+.termin-text p { margin: 0; font-size: 16px; color: var(--text-weich); }
+.termin-text .knopf { flex-shrink: 0; min-height: 50px; padding: 0 26px; font-size: 16px; }
+
+.angebote { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.angebot { display: flex; gap: 20px; padding: 26px 28px; background: #fff; border: 1px solid var(--linie); }
+.angebot svg { flex-shrink: 0; margin-top: 3px; }
+.angebot h4 { font-size: 23px; font-weight: 500; line-height: 1.15; }
+.angebot p { margin: 7px 0 0; font-size: 16px; color: var(--text-weich); }
+
+/* ============================= Verein =================================== */
+
+.verein { background: var(--navy); color: #fff; padding: 84px var(--rand) 90px; }
+.verein-gitter { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 80px; align-items: start; }
+.verein .kleinzeile { color: var(--hell); }
+.verein h2 { font-size: 44px; font-weight: 600; line-height: 1.02; color: #fff; margin: 22px 0; }
+.verein p { margin: 0 0 30px; font-size: 17px; line-height: 1.6; color: rgba(255,255,255,.80); }
+.verein-knoepfe { display: flex; gap: 14px; flex-wrap: wrap; }
+.verein-knoepfe .knopf { min-height: 50px; padding: 0 26px; font-size: 16px; }
+
+.flotte { display: flex; flex-direction: column; margin-top: 16px; }
+.flotte-zeile {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 20px;
+  padding: 15px 0; border-top: 1px solid rgba(255,255,255,.16);
+}
+.flotte-zeile:last-of-type { border-bottom: 1px solid rgba(255,255,255,.16); }
+.flotte-name { font-family: Oswald, "Arial Narrow", Arial, sans-serif; font-size: 24px; font-weight: 500; color: #fff; }
+.flotte-art { font-size: 14px; letter-spacing: .1em; text-transform: uppercase; color: #7fa3c0; }
+.flotte-mehr {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 44px;
+  margin-top: 12px; font-size: 16px; font-weight: 600; color: var(--hell);
+}
+.flotte-mehr:hover { color: #fff; }
+
+/* ============================= Fußzeile ================================= */
+
+.fuss { background: var(--nacht); color: rgba(255,255,255,.72); padding: 60px var(--rand) 44px; }
+.fuss-gitter { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; }
+.fuss-spalte { display: flex; flex-direction: column; gap: 12px; }
+.fuss-spalte .kleinzeile { color: #fff; }
+.fuss a { color: rgba(255,255,255,.72); font-size: 15px; }
+.fuss a:hover { color: #fff; }
+.fuss-logo { width: 210px; height: 73px; object-fit: contain; }
+.fuss-kontakt { display: flex; flex-direction: column; gap: 8px; font-size: 15px; margin-top: 16px; }
+.fuss-kontakt span, .fuss-kontakt a { display: flex; align-items: flex-start; gap: 10px; min-height: 30px; }
+.fuss-kontakt svg { flex-shrink: 0; margin-top: 3px; }
+.fuss-kontakt a { color: var(--hell); }
+.fuss-schluss {
+  display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap;
+  margin-top: 40px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,.14);
+  font-size: 14px; color: rgba(255,255,255,.52);
+}
+
+/* =========================== Unterseite ================================= */
+
+.seitenkopf { background: var(--dunst); border-bottom: 1px solid rgba(6,42,76,.12); padding: 40px var(--rand) 48px; }
+.krumen { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 14px; color: var(--grau); margin-bottom: 20px; }
+.krumen a { color: var(--grau); }
+.krumen span[aria-current] { color: var(--text); font-weight: 500; }
+.seitenkopf h1 { max-width: 800px; font-size: 56px; font-weight: 600; line-height: 1; letter-spacing: -.035em; }
+.seitenkopf p { margin: 20px 0 0; max-width: 720px; font-size: 20px; line-height: 1.5; color: var(--text-weich); }
+
+.inhalt { padding: 64px var(--rand) 80px; }
+.inhalt-gitter { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 80px; align-items: start; }
+.textspalte { display: flex; flex-direction: column; gap: 30px; }
+.textspalte > p { margin: 0; font-size: 17px; line-height: 1.7; color: #223a4f; }
+.textspalte > p.anriss { font-size: 19px; line-height: 1.65; }
+.textspalte h2 { margin-top: 14px; font-size: 34px; font-weight: 600; letter-spacing: -.025em; }
+.textspalte figure { margin: 0; display: flex; flex-direction: column; gap: 12px; }
+.textspalte figure img { width: 100%; height: auto; display: block; border: 1px solid var(--linie); }
+.textspalte figcaption { font-size: 14px; color: var(--grau); }
+
+.warnkasten { display: flex; gap: 18px; padding: 24px 28px; background: #fff6f6; border-left: 4px solid var(--rot); }
+.warnkasten svg { flex-shrink: 0; margin-top: 2px; }
+.warnkasten p { margin: 0; font-size: 16px; line-height: 1.6; color: #3d1214; }
+
+.platzhalter {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  height: 190px; padding: 0 20px; background: #eef2f6;
+  border: 1px dashed rgba(6,42,76,.26); color: #7d93a6; font-size: 14px;
+}
+.zwei-spalten { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.zwei-spalten > div { display: flex; flex-direction: column; gap: 12px; }
+.zwei-spalten span { font-size: 14px; color: var(--grau); }
+
+.legende { display: flex; flex-direction: column; gap: 14px; }
+.legende div { display: flex; align-items: flex-start; gap: 14px; }
+.legende i { flex-shrink: 0; width: 14px; height: 14px; margin-top: 6px; }
+.legende p { margin: 0; font-size: 17px; line-height: 1.6; color: #223a4f; }
+
+.seitenspalte { display: flex; flex-direction: column; gap: 24px; }
+
+.datenkarte { background: var(--navy); color: #fff; }
+.datenkarte-kopf { padding: 22px 26px 16px; border-bottom: 1px solid rgba(255,255,255,.16); }
+.datenkarte-kopf .kleinzeile { color: var(--hell); }
+.datenkarte-liste { display: flex; flex-direction: column; padding: 8px 26px 22px; }
+.datenkarte-zeile {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+  padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.12);
+}
+.datenkarte-zeile:last-child { border-bottom: 0; }
+.datenkarte-schluessel { font-size: 14px; color: #7fa3c0; }
+.datenkarte-wert { font-family: Oswald, "Arial Narrow", Arial, sans-serif; font-size: 19px; font-weight: 500; color: #fff; text-align: right; }
+
+.handlungskarte {
+  display: flex; flex-direction: column; gap: 14px; padding: 26px;
+  background: #fff; border: 1px solid var(--linie); border-top: 4px solid var(--rot);
+}
+.handlungskarte .kleinzeile { color: var(--rot); }
+.handlungskarte h3 { font-size: 25px; font-weight: 500; line-height: 1.15; }
+.handlungskarte p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--text-weich); }
+
+.downloads { display: flex; flex-direction: column; padding: 26px; background: var(--sand); }
+.downloads .kleinzeile { color: var(--stroh-text); padding-bottom: 10px; }
+.downloads a {
+  display: flex; align-items: center; gap: 12px; min-height: 48px;
+  font-size: 16px; font-weight: 500; color: var(--text);
+  border-bottom: 1px solid rgba(6,42,76,.12);
+}
+.downloads a:last-child { border-bottom: 0; }
+.downloads svg { flex-shrink: 0; }
+
+.weiter { background: var(--dunst); border-top: 1px solid rgba(6,42,76,.12); padding: 56px var(--rand) 64px; }
+.weiter .kleinzeile { display: block; margin-bottom: 26px; }
+.weiter-gitter { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.weiter-karte { display: flex; flex-direction: column; gap: 9px; padding: 26px 28px; background: #fff; border: 1px solid var(--linie); }
+.weiter-karte b { font-family: Oswald, "Arial Narrow", Arial, sans-serif; font-size: 23px; font-weight: 500; color: var(--nacht); line-height: 1.15; }
+.weiter-karte span { font-size: 15px; color: var(--text-weich); }
+.weiter-karte:hover { border-color: var(--interaktiv); }
+
+/* ==========================================================================
+   TABLET — ab hier wird es eng. Die Navigation ist der erste Engpass:
+   Logo, Name, fünf Menüpunkte und der PPR-Knopf brauchen zusammen mehr
+   als 1100 px. Deshalb klappt das Menü schon deutlich vor 768 px zusammen.
+   ========================================================================== */
+
+@media (max-width: 1140px) {
+  :root { --rand: 40px; }
+
+  .navi { display: none; }
+  .menue-schalter { display: inline-flex; }
+  .kopf { gap: 20px; }
+  .kopf-rechts { display: flex; align-items: center; gap: 8px; }
+
+  .hero { height: 520px; }
+  .hero h1 { font-size: 62px; }
+  .hero p { font-size: 19px; }
+
+  /* Fünf Platzdaten-Felder passen nicht mehr nebeneinander: 3 + 2 */
+  .platzdaten { padding: 0; }
+  .platzdaten-gitter { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: rgba(255,255,255,.16); }
+  .platzdaten-feld { padding: 18px 24px; border-left: 0; background: var(--navy); }
+  .platzdaten-feld:first-child { padding-left: 24px; }
+  .platzdaten-feld:last-child { grid-column: span 2; padding-right: 24px; }
+  .platzdaten-wert { font-size: 23px; }
+
+  /* Drei schmale Spalten wären je 230 px breit — stattdessen liegende Karten */
+  .tueren { padding: 60px var(--rand) 64px; }
+  .tueren-kopf h2 { font-size: 38px; }
+  .tueren-gitter { grid-template-columns: 1fr; gap: 24px; }
+  .tuer { display: grid; grid-template-columns: 300px minmax(0, 1fr); grid-template-rows: auto auto; }
+  .tuer > img { grid-row: 1 / 3; height: 100%; min-height: 230px; }
+  .tuer-text { padding: 26px 30px 12px; gap: 14px; }
+  .tuer-liste { padding: 0 30px 22px; }
+
+  .amplatz { padding: 56px var(--rand) 60px; }
+  .amplatz-kopf h2 { font-size: 34px; }
+  .termin-datum { width: 150px; padding: 26px 16px; }
+  .termin-tag { font-size: 46px; }
+  .termin-monat { font-size: 18px; }
+  .termin-text { flex-direction: column; align-items: flex-start; gap: 20px; padding: 26px 28px; }
+  .termin-text h3 { font-size: 28px; }
+  .angebote { grid-template-columns: 1fr; gap: 16px; }
+
+  .verein { padding: 60px var(--rand) 64px; }
+  .verein-gitter { grid-template-columns: 1fr; gap: 44px; }
+  .verein h2 { font-size: 36px; }
+
+  .fuss-gitter { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .fuss-gitter > .fuss-spalte:first-child { grid-column: 1 / -1; }
+
+  /* Seitenspalte über den Text: Frequenz und Bahnlänge zuerst */
+  .seitenkopf { padding: 32px var(--rand) 38px; }
+  .seitenkopf h1 { font-size: 44px; }
+  .seitenkopf p { font-size: 18px; }
+  .inhalt { padding: 40px var(--rand) 60px; }
+  .inhalt-gitter { grid-template-columns: 1fr; gap: 40px; }
+  .seitenspalte { order: -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
+  .downloads { grid-column: 1 / -1; }
+  .textspalte h2 { font-size: 30px; }
+
+  .weiter { padding: 44px var(--rand) 52px; }
+  .weiter-gitter { grid-template-columns: 1fr; gap: 16px; }
+}
+
+/* ============================ TELEFON =================================== */
+
+@media (max-width: 720px) {
+  :root { --rand: 20px; }
+
+  body { font-size: 16px; }
+  .kopf { padding: 10px var(--rand); }
+  .marke { gap: 8px; }
+  .marke img { width: 52px; height: 27px; }
+  .marke-name { font-size: 13px; }
+  .marke-zusatz { display: none; }
+  .kopf .knopf { padding: 0 14px; font-size: 14px; }
+  .kopf .knopf span { display: none; }        /* „anfragen“ weg, „PPR“ bleibt */
+
+  .hero { height: 480px; }
+  .hero-inhalt { justify-content: flex-end; gap: 14px; padding: 0 var(--rand) 28px; }
+  .hero-schleier { background: linear-gradient(180deg, rgba(5,20,38,.50) 0%, rgba(5,20,38,.28) 30%, rgba(5,20,38,.93) 100%); }
+  .hero-kleinzeile { font-size: 10px; letter-spacing: .18em; line-height: 1.7; }
+  .hero h1 { font-size: 44px; line-height: .94; letter-spacing: -.03em; }
+  .hero p { font-size: 17px; }
+
+  .platzdaten-gitter { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .platzdaten-feld, .platzdaten-feld:last-child { grid-column: span 1; padding: 14px 16px; }
+  .platzdaten-feld--warnung { grid-column: 1 / -1 !important; }
+  .platzdaten-wert { font-size: 22px; }
+
+  .tueren { padding: 44px var(--rand) 48px; }
+  .tueren-kopf h2 { font-size: 34px; }
+  .tuer { display: flex; flex-direction: column; }
+  .tuer > img { height: 170px; min-height: 0; }
+  .tuer-text { padding: 20px 20px 8px; gap: 12px; }
+  .tuer h3 { font-size: 26px; }
+  .tuer-liste { padding: 0 20px 12px; }
+
+  .amplatz { padding: 40px var(--rand) 44px; }
+  .amplatz-kopf { gap: 6px; flex-direction: column; margin-bottom: 20px; }
+  .amplatz-kopf h2 { font-size: 30px; }
+  .termin { flex-direction: column; }
+  .termin-datum { flex-direction: row; align-items: baseline; justify-content: flex-start; gap: 12px; width: 100%; padding: 16px 20px; }
+  .termin-tag { font-size: 38px; }
+  .termin-monat { font-size: 20px; }
+  .termin-jahr { display: none; }
+  .termin-text { padding: 20px; gap: 12px; }
+  .termin-text h3 { font-size: 27px; }
+  .termin-text .knopf { width: 100%; }
+  .angebot { padding: 20px; gap: 16px; }
+  .angebot h4 { font-size: 21px; }
+
+  .verein { padding: 42px var(--rand) 46px; }
+  .verein h2 { font-size: 32px; }
+  .verein-knoepfe { flex-direction: column; }
+  .verein-knoepfe .knopf { width: 100%; }
+  .flotte-zeile { flex-direction: column; align-items: flex-start; gap: 2px; padding: 13px 0; }
+  .flotte-name { font-size: 22px; }
+  .flotte-art { font-size: 13px; }
+
+  .fuss { padding: 36px var(--rand) 28px; }
+  .fuss-gitter { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .fuss a { min-height: 44px; display: flex; align-items: center; }
+  .fuss-schluss { flex-direction: column; align-items: flex-start; gap: 10px; }
+
+  .seitenkopf { padding: 20px var(--rand) 26px; }
+  .seitenkopf h1 { font-size: 40px; }
+  .seitenkopf p { margin-top: 14px; font-size: 17px; }
+  .inhalt { padding: 24px var(--rand) 36px; }
+  .seitenspalte { grid-template-columns: 1fr; gap: 16px; }
+  .textspalte { gap: 22px; }
+  .textspalte h2 { font-size: 30px; }
+  .zwei-spalten { grid-template-columns: 1fr; }
+  .platzhalter { height: 170px; }
+  .weiter { padding: 32px var(--rand) 36px; }
+}
+
+/* Bewegung nur, wenn der Nutzer sie zulässt */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ==========================================================================
+   Ergänzungen: Entwurfsband, Klappmenü
+   ========================================================================== */
+
+.entwurfsband {
+  background: var(--sand);
+  border-bottom: 1px solid rgba(6, 42, 76, .12);
+  color: #6b5a38;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 9px var(--rand);
+  text-align: center;
+}
+.entwurfsband strong { color: #4a3d24; }
+
+.klappmenue { display: none; }
+
+@media (max-width: 1140px) {
+  .klappmenue { background: var(--navy); padding: 4px var(--rand) 26px; }
+  .klappmenue[hidden] { display: none; }
+  .klappmenue:not([hidden]) { display: flex; flex-direction: column; }
+  .klappmenue a {
+    display: flex; flex-direction: column; gap: 2px;
+    min-height: 60px; justify-content: center;
+    border-top: 1px solid rgba(255,255,255,.14); color: #fff;
+  }
+  .klappmenue a:first-child { border-top: 0; }
+  .klappmenue a:hover { color: var(--hell); }
+  .klappmenue b {
+    font-family: Oswald, "Arial Narrow", Arial, sans-serif;
+    font-size: 26px; font-weight: 500; letter-spacing: -.01em;
+  }
+  .klappmenue span { font-size: 13px; color: #7fa3c0; }
+}
