@@ -50,5 +50,7 @@ Am einfachsten direkt an Adrian, oder als Issue in diesem Repo.
 Reines HTML und CSS, kein Framework, keine Abhängigkeiten. Ein einziges
 Stylesheet, eine kleine Datei JavaScript für das Klappmenü. Schriften:
 [Oswald](https://fonts.google.com/specimen/Oswald) und
-[Jost](https://fonts.google.com/specimen/Jost) über Google Fonts — dieselben,
-die der Verein für die Flugplatzfest-Seite verwendet.
+[Jost](https://fonts.google.com/specimen/Jost) — dieselben, die der Verein
+für die Flugplatzfest-Seite verwendet, hier aber als eigene Dateien unter
+`schriften/` statt über Google Fonts eingebunden. Die Seite lädt beim
+Aufruf nichts von einem fremden Server.
