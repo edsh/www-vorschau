@@ -526,6 +526,7 @@ h1, h2, h3, h4 {
 
   .platzdaten-gitter { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .platzdaten-feld, .platzdaten-feld:last-child { grid-column: span 1; padding: 14px 16px; }
+  .platzdaten-feld:first-child { padding-left: 16px; }
   .platzdaten-feld--warnung { grid-column: 1 / -1 !important; }
   .platzdaten-wert { font-size: 22px; }
 
